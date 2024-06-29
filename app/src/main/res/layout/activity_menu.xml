@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#white"
-    tools:context=".Menu">
+    tools:context="com.example.projeto.MenuActivity">
 
     <ImageButton
         android:id="@+id/botaoPortugues"
@@ -54,19 +53,16 @@
         tools:layout_editor_absoluteX="246dp"
         tools:layout_editor_absoluteY="286dp" />
 
-    <FrameLayout
-        android:layout_width="325dp"
-        android:layout_height="151dp"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Quiz de conhecimento gerais"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="88dp"
-        tools:ignore="MissingConstraints">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Quiz de Conhecimento Gerais" />
-    </FrameLayout>
+        tools:layout_editor_absoluteY="131dp"
+        tools:ignore="HardcodedText,MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

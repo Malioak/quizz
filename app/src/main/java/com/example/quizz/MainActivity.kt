@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.projeto.MenuActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,33 +17,41 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        // Inicializa o Firebase Auth
-        auth = FirebaseAuth.getInstance()
+        auth = Firebase.auth
 
-        // Configura o listener para o botão de login
+        val emailEditText = findViewById<EditText>(R.id.editTextText)
+        val senhaEditText = findViewById<EditText>(R.id.editTextText2)
         val button = findViewById<Button>(R.id.button)
+
         button.setOnClickListener {
-            val email = findViewById<EditText>(R.id.editTextText).text.toString()
-            val senha = findViewById<EditText>(R.id.editTextText2).text.toString()
-            loginUser(email, senha)
+            val email = emailEditText.text.toString()
+            val senha = senhaEditText.text.toString()
+            if (email.isNotEmpty() && senha.isNotEmpty()) {
+                loginUsuario(email, senha)
+            } else {
+                Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
-    private fun loginUser(email: String, senha: String) {
-        auth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(this) { task ->
-            if (task.isSuccessful) {
-                // Login bem-sucedido
-                val intent = Intent(this, Menu::class.java)
-                intent.putExtra("resultado", 1) // Passa o resultado do login como 1 (sucesso)
-                startActivity(intent)
-                Toast.makeText(this, "Login com Sucesso", Toast.LENGTH_SHORT).show()
-            } else {
-                // Login falhou
-                Toast.makeText(this, "Login Falhou: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+    private fun loginUsuario(email: String, senha: String) {
+        auth.signInWithEmailAndPassword(email, senha)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Login successful
+                    val intent = Intent(this, MenuActivity::class.java)
+                    val userId = auth.currentUser?.uid
+                    if (userId != null) {
+                        intent.putExtra("userId", userId)
+                    }
+                    startActivity(intent)
+                    Toast.makeText(this, "Login com Sucesso", Toast.LENGTH_SHORT).show()
+                } else {
+                    // Login failed
+                    Toast.makeText(this, "Login Falhou: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
             }
-        }
     }
 }
