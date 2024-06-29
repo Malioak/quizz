@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#white"
+    tools:context=".Menu">
+
+    <ImageButton
+        android:id="@+id/botaoPortugues"
+        android:layout_width="153dp"
+        android:layout_height="74dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/portugues"
+        tools:ignore="ContentDescription,MissingConstraints,SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="286dp" />
+
+    <ImageButton
+        android:id="@+id/botaoGeografia"
+        android:layout_width="152dp"
+        android:layout_height="73dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bordas"
+        android:backgroundTint="#002B2D30"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/geografia"
+        tools:ignore="ContentDescription,MissingConstraints,SpeakableTextPresentCheck,ImageContrastCheck"
+        tools:layout_editor_absoluteY="459dp" />
+
+    <ImageButton
+        android:id="@+id/botaoHistoria"
+        android:layout_width="151dp"
+        android:layout_height="74dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/historia"
+        tools:ignore="ContentDescription,MissingConstraints,SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="459dp" />
+
+    <ImageButton
+        android:id="@+id/botaoMatematica"
+        android:layout_width="150dp"
+        android:layout_height="74dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/matematica"
+        tools:ignore="ContentDescription,ImageContrastCheck,MissingConstraints,SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="246dp"
+        tools:layout_editor_absoluteY="286dp" />
+
+    <FrameLayout
+        android:layout_width="325dp"
+        android:layout_height="151dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="88dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Quiz de Conhecimento Gerais" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
