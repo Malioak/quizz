@@ -77,11 +77,7 @@ class MenuActivity : AppCompatActivity() {
         }
 
         botaoGeografia.setOnClickListener {
-            if (!botaoGeografiaClicado) {
-                botaoGeografiaClicado = true
                 intentG()
-
-            }
         }
 
         botaoPortugues.setOnClickListener {

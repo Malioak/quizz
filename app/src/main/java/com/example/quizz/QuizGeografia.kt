@@ -80,7 +80,7 @@ class QuizGeografia: AppCompatActivity() {
     private fun verificarRespostas(resposta: String){
         val mensagem = if(resposta == perguntas[indicePerguntaAtual].respostaCorreta){
             contadorRespostasCorretas++
-            "correto"
+            "Correto"
         }else{
             "Incorreto"
         }

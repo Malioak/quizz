@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         val emailEditText = findViewById<EditText>(R.id.editTextText)
         val senhaEditText = findViewById<EditText>(R.id.editTextText2)
         val button = findViewById<Button>(R.id.button)
+        val button2 = findViewById<Button>(R.id.button2)
 
         button.setOnClickListener {
             val email = emailEditText.text.toString().trim()
@@ -34,6 +35,20 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        button2.setOnClickListener{
+            val email = emailEditText.text.toString().trim()
+            val senha = senhaEditText.text.toString().trim()
+            auth.createUserWithEmailAndPassword(email, senha)
+                .addOnCompleteListener(this){task ->
+                    if(task.isSuccessful){
+                        Toast.makeText(this, "Foi", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(this, "Falhou", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
         }
     }
 
