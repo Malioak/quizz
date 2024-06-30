@@ -6,8 +6,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mathematics"
-    tools:context=".QuizMatematica">
+    android:background="@drawable/portuguese"
+    tools:context=".QuizPortugues">
 
     <TextView
         android:id="@+id/textoPergunta1"
@@ -36,12 +36,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/btn1"
         android:gravity="center"
-        android:text="Button 1"
+        android:text="Button1"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/botaoResposta2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +60,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/btn1"
         android:gravity="center"
-        android:text="Button 2"
+        android:text="Button2"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/botaoResposta3"
         app:layout_constraintEnd_toEndOf="parent"

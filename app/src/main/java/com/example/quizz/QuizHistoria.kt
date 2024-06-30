@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class QuizMatematica : AppCompatActivity() {
+class QuizHistoria : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
     private lateinit var textoPergunta1: TextView
@@ -27,30 +27,28 @@ class QuizMatematica : AppCompatActivity() {
     private var indicePerguntaAtual = 0
     private var contadorRespostasCorretas = 0
 
-    private val perguntas= listOf(
-        Pergunta("Qual é o valor do número pi (π)?", "3.14159", listOf("3.14159", "2.71828", "1.61803", "4.66920")),
-        Pergunta("Quanto é a raiz quadrada de -1?", "i (unidade imaginária)", listOf("1", "-1", "i (unidade imaginária)", "0")),
-        Pergunta("Qual é o resultado da integral de e elevado a x, em relação a x?", "e elevado a x", listOf("x", "e", "1/x", "e elevado a x")),
-        Pergunta("Qual é a derivada de seno(x)?", "cos(x)", listOf("sen(x)", "cos(x)", "-sen(x)", "-cos(x)")),
-        Pergunta("Qual é o resultado de 0! (fatorial de 0)?", "1", listOf("0", "1", "2", "π")),
-        Pergunta("Qual é o número de Euler, e, aproximadamente?", "2.71828", listOf("3.14159", "1.41421", "2.71828", "0.57722")),
-        Pergunta("Qual é a fórmula para calcular a soma dos termos de uma progressão geométrica finita?", "a * (1 - r^n) / (1 - r)", listOf("a * (1 - r^n)", "a * (r^n - 1)", "a * (1 + r^n)", "a * (1 - r^n) / (1 - r)")),
-        Pergunta("Qual é o resultado de ln(e)?", "1", listOf("0", "1", "e", "π")),
-        Pergunta("Qual é o valor do cosseno de 0 graus?", "1", listOf("0", "1", "-1", "π/2")),
-        Pergunta("Qual é o valor de seno(pi/2)?", "1", listOf("0", "1", "-1", "π/2")),
+    private val perguntas = listOf(
+        Pergunta("Qual foi o resultado da Revolução Francesa em relação à Mornaquia Absolutista?", "A monarquia constitucional foi estabelecida", listOf("Monarquia Absolutista Restaurada","O império foi proclamado.","A monarquia constitucional foi estabelecida","Uma república parlamentar foi instaurada.")) ,
+        Pergunta("Qual batalha marcou o fim da Guerra dos Cem Anos entre a França e a Inglaterra?", "Batalha de Castillon", listOf(" Batalha de Hastings","Batalha de Agincourt","Batalha de Poitiers","Batalha de Castillon")),
+        Pergunta("Quem foi o líder da Revolução Russa de 1917?", " Vladimir Lenin", listOf(" Vladimir Lenin","Joseph Stalin"," Leon Trotsky","Mikhail Gorbachev")),
+        Pergunta("O que foi o Congresso de Viena, realizado em 1815??", "Uma conferência para redistribuir o poder na Europa após as Guerras Napoleônicas", listOf("Uma tentativa de Napoleão de conquistar a Europa","Uma conferência para redistribuir o poder na Europa após as Guerras Napoleônicas","Uma reunião para discutir a independência das colônias americanas","Um acordo para dividir a África entre as potências europeias")) ,
+        Pergunta("Qual foi a principal causa da Guerra dos Trinta Anos (1618-1648)?", "Tensões religiosas e políticas na Europa Central", listOf("Disputas territoriais na Europa Oriental","Competição colonial entre as potências europeias","Conflitos entre monarquias absolutistas e parlamentares","Tensões religiosas e políticas na Europa Central")) ,
+        Pergunta("Quem foi o líder do movimento de independência da Índia?:", "a) Mahatma Gandhi", listOf("Mahatma Gandhi","Jawaharlal Nehru"," Subhas Chandra Bose","Indira Gandhi")) ,
+        Pergunta("O Tratado de Tordesilhas foi um acordo firmado entre:", "Portugal e Espanha", listOf(" Espanha e Itália","Portugal e Espanha"," Espanha e Holanda","Portugal e Itália")) ,
+        Pergunta("Qual a data da independência do Brasil?", "7 de setembro de 1822?", listOf("7 de setembro de 1822","7 de setembro de 1832","7 de setembro de 1842","7 de setembro de 1812")) ,
+        Pergunta("Qual foi o tratado que encerrou a Primeira Guerra Mundial?", "Tratado de Versalhes.", listOf("Tratado de Brest-Litovski","Tratado de Tordesilhas.","Tratado de Versalhes","Tratado de Paris.")) ,
+        Pergunta("Qual evento marcou o início da Idade Moderna na Europa?", " A queda de Constantinopla", listOf(" A Reforma Protestante"," A queda de Constantinopla","O Renascimento","A descoberta da América")) ,
     )
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_quiz_matematica)
+        setContentView(R.layout.activity_quiz_historia)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-
         }
         database = Firebase.database
         auth = Firebase.auth
@@ -64,7 +62,8 @@ class QuizMatematica : AppCompatActivity() {
         botaoResposta1.setOnClickListener { verificarRespostas(perguntas[indicePerguntaAtual].resposta[0]) }
         botaoResposta2.setOnClickListener { verificarRespostas(perguntas[indicePerguntaAtual].resposta[1]) }
         botaoResposta3.setOnClickListener { verificarRespostas(perguntas[indicePerguntaAtual].resposta[2]) }
-        botaoResposta4.setOnClickListener { verificarRespostas(perguntas[indicePerguntaAtual].resposta[3]) }}
+        botaoResposta4.setOnClickListener { verificarRespostas(perguntas[indicePerguntaAtual].resposta[3]) }
+    }
 
     private fun atualizarPergunta(){
         val perguntaAtual = perguntas[indicePerguntaAtual]
@@ -79,7 +78,7 @@ class QuizMatematica : AppCompatActivity() {
     private fun verificarRespostas(resposta: String){
         val mensagem = if(resposta == perguntas[indicePerguntaAtual].respostaCorreta){
             contadorRespostasCorretas++
-            "Correto"
+            "correto"
         }else{
             "Incorreto"
         }
@@ -90,15 +89,16 @@ class QuizMatematica : AppCompatActivity() {
         if(indicePerguntaAtual == 0) {
             salvarResultadoNoFirebase()
             val intent = Intent(applicationContext, MenuActivity::class.java)
-            intent.putExtra("respostasCorretasMatematica", contadorRespostasCorretas)
+            intent.putExtra("respostasCorretasHistoria", contadorRespostasCorretas)
             startActivity(intent)
         } else {
             atualizarPergunta()
         }
+        atualizarPergunta()
     }
     private fun salvarResultadoNoFirebase() {
         val userId = auth.currentUser?.uid ?: return
-        val quizResultRef = database.reference.child("resultado").child(userId).child("matematica")
+        val quizResultRef = database.reference.child("resultado").child(userId).child("historia")
         quizResultRef.setValue(contadorRespostasCorretas)
             .addOnSuccessListener {
                 Toast.makeText(this, "Resultado salvo no Firebase", Toast.LENGTH_SHORT).show()
@@ -107,5 +107,4 @@ class QuizMatematica : AppCompatActivity() {
                 Toast.makeText(this, "Erro ao salvar resultado no Firebase", Toast.LENGTH_SHORT).show()
             }
     }
-
 }

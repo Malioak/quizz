@@ -1,5 +1,6 @@
 package com.example.quizz
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -15,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class QuizMatematica : AppCompatActivity() {
+class QuizGeografia: AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
     private lateinit var textoPergunta1: TextView
@@ -27,30 +28,29 @@ class QuizMatematica : AppCompatActivity() {
     private var indicePerguntaAtual = 0
     private var contadorRespostasCorretas = 0
 
-    private val perguntas= listOf(
-        Pergunta("Qual é o valor do número pi (π)?", "3.14159", listOf("3.14159", "2.71828", "1.61803", "4.66920")),
-        Pergunta("Quanto é a raiz quadrada de -1?", "i (unidade imaginária)", listOf("1", "-1", "i (unidade imaginária)", "0")),
-        Pergunta("Qual é o resultado da integral de e elevado a x, em relação a x?", "e elevado a x", listOf("x", "e", "1/x", "e elevado a x")),
-        Pergunta("Qual é a derivada de seno(x)?", "cos(x)", listOf("sen(x)", "cos(x)", "-sen(x)", "-cos(x)")),
-        Pergunta("Qual é o resultado de 0! (fatorial de 0)?", "1", listOf("0", "1", "2", "π")),
-        Pergunta("Qual é o número de Euler, e, aproximadamente?", "2.71828", listOf("3.14159", "1.41421", "2.71828", "0.57722")),
-        Pergunta("Qual é a fórmula para calcular a soma dos termos de uma progressão geométrica finita?", "a * (1 - r^n) / (1 - r)", listOf("a * (1 - r^n)", "a * (r^n - 1)", "a * (1 + r^n)", "a * (1 - r^n) / (1 - r)")),
-        Pergunta("Qual é o resultado de ln(e)?", "1", listOf("0", "1", "e", "π")),
-        Pergunta("Qual é o valor do cosseno de 0 graus?", "1", listOf("0", "1", "-1", "π/2")),
-        Pergunta("Qual é o valor de seno(pi/2)?", "1", listOf("0", "1", "-1", "π/2")),
+    private val perguntas = listOf(
+        Pergunta("Qual é o maior rio do mundo em volume de água?", "Rio Amazonas", listOf("Rio Nilo", "Rio Amazonas", "Rio Yangtzé", "Rio Mississipi")),
+        Pergunta("Qual é o ponto mais alto da Terra?", "Monte Everest", listOf("Monte Kilimanjaro", "Monte K2", "Monte Everest", "Monte Fuji")),
+        Pergunta("Qual é o maior deserto do mundo?", "Deserto do Saara", listOf("Deserto de Gobi", "Deserto do Saara", "Deserto do Atacama", "Deserto da Arábia")),
+        Pergunta("Qual é o maior oceano do mundo?", "Oceano Pacífico", listOf("Oceano Atlântico", "Oceano Índico", "Oceano Ártico", "Oceano Pacífico")),
+        Pergunta("Qual é o país mais populoso do mundo?", "india", listOf("Índia", "Estados Unidos", "Brasil", "China")),
+        Pergunta("Qual é o menor país do mundo em área territorial?", "Vaticano", listOf("Mônaco", "Nauru", "Vaticano", "Maldivas")),
+        Pergunta("Qual é o maior país em área territorial?", "Rússia", listOf("Canadá", "Estados Unidos", "China", "Rússia")),
+        Pergunta("Qual é o nome da capital do Canadá?", "Ottawa", listOf("Toronto", "Montreal", "Vancouver", "Ottawa")),
+        Pergunta("Qual é o nome do deserto localizado na América do Norte?", "Deserto do Mojave", listOf("Deserto de Sonora", "Deserto do Atacama", "Deserto do Mojave", "Deserto do Chihuahua")),
+        Pergunta("Qual é o ponto mais baixo da Terra?", "Fossa das Marianas", listOf("Grande Fossa Oceânica", "Fossa das Marianas", "Fossa da Groenlândia", "Fossa de Tonga")),
     )
 
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_quiz_matematica)
+        setContentView(R.layout.activity_quiz_geografia)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-
         }
         database = Firebase.database
         auth = Firebase.auth
@@ -64,7 +64,8 @@ class QuizMatematica : AppCompatActivity() {
         botaoResposta1.setOnClickListener { verificarRespostas(perguntas[indicePerguntaAtual].resposta[0]) }
         botaoResposta2.setOnClickListener { verificarRespostas(perguntas[indicePerguntaAtual].resposta[1]) }
         botaoResposta3.setOnClickListener { verificarRespostas(perguntas[indicePerguntaAtual].resposta[2]) }
-        botaoResposta4.setOnClickListener { verificarRespostas(perguntas[indicePerguntaAtual].resposta[3]) }}
+        botaoResposta4.setOnClickListener { verificarRespostas(perguntas[indicePerguntaAtual].resposta[3]) }
+    }
 
     private fun atualizarPergunta(){
         val perguntaAtual = perguntas[indicePerguntaAtual]
@@ -79,7 +80,7 @@ class QuizMatematica : AppCompatActivity() {
     private fun verificarRespostas(resposta: String){
         val mensagem = if(resposta == perguntas[indicePerguntaAtual].respostaCorreta){
             contadorRespostasCorretas++
-            "Correto"
+            "correto"
         }else{
             "Incorreto"
         }
@@ -90,15 +91,16 @@ class QuizMatematica : AppCompatActivity() {
         if(indicePerguntaAtual == 0) {
             salvarResultadoNoFirebase()
             val intent = Intent(applicationContext, MenuActivity::class.java)
-            intent.putExtra("respostasCorretasMatematica", contadorRespostasCorretas)
+            intent.putExtra("respostasCorretasGeografia", contadorRespostasCorretas)
             startActivity(intent)
         } else {
             atualizarPergunta()
         }
+        atualizarPergunta()
     }
     private fun salvarResultadoNoFirebase() {
         val userId = auth.currentUser?.uid ?: return
-        val quizResultRef = database.reference.child("resultado").child(userId).child("matematica")
+        val quizResultRef = database.reference.child("resultado").child(userId).child("geografia")
         quizResultRef.setValue(contadorRespostasCorretas)
             .addOnSuccessListener {
                 Toast.makeText(this, "Resultado salvo no Firebase", Toast.LENGTH_SHORT).show()
@@ -107,5 +109,4 @@ class QuizMatematica : AppCompatActivity() {
                 Toast.makeText(this, "Erro ao salvar resultado no Firebase", Toast.LENGTH_SHORT).show()
             }
     }
-
 }

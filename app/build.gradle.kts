@@ -1,9 +1,9 @@
-plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.google.gms.google.services)
-}
+plugins{
+alias(libs.plugins.android.application)
+alias(libs.plugins.jetbrains.kotlin.android)
+alias(libs.plugins.google.gms.google.services)
 
+}
 android {
     namespace = "com.example.quizz"
     compileSdk = 34
@@ -52,7 +52,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }

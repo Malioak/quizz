@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "517692895722",
+    "firebase_url": "https://projeto2-56918-default-rtdb.firebaseio.com",
+    "project_id": "projeto2-56918",
+    "storage_bucket": "projeto2-56918.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517692895722:android:ec118df094db78499fc293",
+        "android_client_info": {
+          "package_name": "com.example.quizz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArkW9Me1qY7Vn_NLQ6oHZxZL51afLMdsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

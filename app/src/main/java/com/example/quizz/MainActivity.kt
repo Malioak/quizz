@@ -2,11 +2,11 @@ package com.example.quizz
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.projeto.MenuActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Inicialização do FirebaseAuth
         auth = Firebase.auth
 
         val emailEditText = findViewById<EditText>(R.id.editTextText)
@@ -26,8 +27,8 @@ class MainActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.button)
 
         button.setOnClickListener {
-            val email = emailEditText.text.toString()
-            val senha = senhaEditText.text.toString()
+            val email = emailEditText.text.toString().trim()
+            val senha = senhaEditText.text.toString().trim()
             if (email.isNotEmpty() && senha.isNotEmpty()) {
                 loginUsuario(email, senha)
             } else {
@@ -40,18 +41,21 @@ class MainActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, senha)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Login successful
+                    Log.d("Login", "Login bem-sucedido")
+
                     val intent = Intent(this, MenuActivity::class.java)
-                    val userId = auth.currentUser?.uid
-                    if (userId != null) {
-                        intent.putExtra("userId", userId)
-                    }
                     startActivity(intent)
                     Toast.makeText(this, "Login com Sucesso", Toast.LENGTH_SHORT).show()
+
                 } else {
-                    // Login failed
+                    // Adicionando um log para depuração
+                    Log.e("Login", "Login falhou", task.exception)
                     Toast.makeText(this, "Login Falhou: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("Login", "Erro de login", exception)
+                Toast.makeText(this, "Erro de login: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
 }
