@@ -43,9 +43,9 @@ class MainActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email, senha)
                 .addOnCompleteListener(this){task ->
                     if(task.isSuccessful){
-                        Toast.makeText(this, "Foi", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Cadastrado", Toast.LENGTH_SHORT).show()
                     }else{
-                        Toast.makeText(this, "Falhou", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Cadastro não foi possivel", Toast.LENGTH_SHORT).show()
                     }
 
                 }
