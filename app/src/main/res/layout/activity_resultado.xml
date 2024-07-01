@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/resultado"
+    android:background="#E0F7FA"
     tools:context=".Resultado">
 
     <TextView

@@ -1,40 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E0F7FA"
     tools:context=".MenuActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="157dp"
+        android:fontFamily="casual"
+        android:text="Quiz de Conhecimento Gerais"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <ImageButton
         android:id="@+id/botaoMatematica"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@+id/botaoGeografia"
-        app:layout_constraintEnd_toStartOf="@+id/botaoPortugues"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/matematica"
         tools:ignore="ContentDescription,ImageContrastCheck,MissingConstraints,SpeakableTextPresentCheck" />
 
     <ImageButton
+        android:id="@+id/botaoPortugues"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/botaoHistoria"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/portugues"
+        tools:ignore="ContentDescription,ImageContrastCheck,MissingConstraints,SpeakableTextPresentCheck" />
+
+    <ImageButton
         android:id="@+id/botaoGeografia"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="125dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toStartOf="@+id/botaoHistoria"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botaoMatematica"
         app:srcCompat="@drawable/geografia"
@@ -44,60 +75,34 @@
         android:id="@+id/botaoHistoria"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="57dp"
-        android:layout_marginBottom="259dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/botaoGeografia"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/botaoPortugues"
         app:srcCompat="@drawable/historia"
         tools:ignore="ContentDescription,ImageContrastCheck,MissingConstraints,SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/botaoPortugues"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="57dp"
-        android:layout_marginBottom="56dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toTopOf="@+id/botaoHistoria"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/botaoMatematica"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/portugues"
-        tools:ignore="ContentDescription,ImageContrastCheck,MissingConstraints,SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="157dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="27dp"
-        android:fontFamily="casual"
-        android:text="Quiz de Conhecimento Gerais"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/botaoPortugues"
-        app:layout_constraintEnd_toEndOf="@+id/botaoPortugues"
-        app:layout_constraintStart_toStartOf="@+id/botaoMatematica"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText,TextSizeCheck" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="32dp"
         android:text="Resultado"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botaoGeografia"
         tools:ignore="HardcodedText" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
